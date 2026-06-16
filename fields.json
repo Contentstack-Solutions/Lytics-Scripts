@@ -1,0 +1,195 @@
+[
+    {
+        "id": "basket_product_name",
+        "type": "[]string",
+        "shortdesc": "All Products added to basket",
+        "longdesc": "List of all product names added to basket by the user.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "merge",
+        "tags": [
+            "basket",
+            "ecommerce",
+            "product"
+        ]
+    },
+    {
+        "id": "basket_product_sku",
+        "type": "[]string",
+        "shortdesc": "All SKU's added to basket ",
+        "longdesc": "List of all product SKUs added to basket by the user.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "merge",
+        "tags": [
+            "basket",
+            "ecommerce",
+            "product"
+        ]
+    },
+    {
+        "id": "basket_product_category",
+        "type": "[]string",
+        "shortdesc": "All Categories added to basket",
+        "longdesc": "List of all product categories added to bakset by the user.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "merge",
+        "tags": [
+            "basket",
+            "ecommerce",
+            "category"
+        ]
+    },
+    {
+        "id": "basket_begin_checkout",
+        "type": "bool",
+        "shortdesc": "Started Checkout",
+        "longdesc": "Indicates whether the user initiated checkout.",
+        "is_pii": false,
+        "is_identifier": false,
+        "tags": [
+            "basket",
+            "checkout",
+            "purchase"
+        ]
+    },
+    {
+        "id": "basket_complete_checkout",
+        "type": "bool",
+        "shortdesc": "Checkout Status",
+        "longdesc": "Status of checkout completion.",
+        "is_pii": false,
+        "is_identifier": false,
+        "tags": [
+            "basket",
+            "checkout",
+            "purchase"
+        ]
+    },
+    {
+        "id": "basket_currency",
+        "type": "string",
+        "shortdesc": "Basket Currency",
+        "longdesc": "ISO currency code (e.g. USD, EUR, INR).",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "basket",
+            "ecommerce",
+            "currency"
+        ]
+    },
+    {
+        "id": "country",
+        "type": "string",
+        "shortdesc": "Country",
+        "longdesc": "Shipping country available on checkout-related events.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "customer",
+            "location",
+            "checkout"
+        ]
+    },
+    {
+        "id": "basket_coupon_code",
+        "type": "string",
+        "shortdesc": "Coupon Code",
+        "longdesc": "Applied discount or promo code.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "basket",
+            "discount",
+            "promotion"
+        ]
+    },
+    {
+        "id": "basket_total",
+        "type": "number",
+        "shortdesc": "Cart Total",
+        "longdesc": "Total cart value after discounts and before taxes or shipping.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "basket",
+            "cart",
+            "revenue"
+        ]
+    },
+    {
+        "id": "products_viewed",
+        "type": "map[string]intsum",
+        "shortdesc": "Count of products viewed",
+        "longdesc": "A map of product IDs to the number of times each product has been viewed.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "sum",
+        "tags": [
+            "product",
+            "browsing",
+            "engagement"
+        ]
+    },
+    {
+        "id": "products_viewed_categories",
+        "type": "map[string]intsum",
+        "shortdesc": "Count of products viewed by category",
+        "longdesc": "A map of product category names to the number of times products in each category have been viewed.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "sum",
+        "tags": [
+            "product",
+            "category",
+            "browsing",
+            "engagement"
+        ]
+    },
+    {
+        "id": "topic_browsed",
+        "type": "map[string]intsum",
+        "shortdesc": "Count of topics browsed",
+        "longdesc": "A map of topic names to the number of times a user has browsed content under each topic.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "sum",
+        "tags": [
+            "topic",
+            "browsing",
+            "engagement"
+        ]
+    },
+    {
+        "id": "products_purchased",
+        "type": "map[string]intsum",
+        "shortdesc": "Products Purchased",
+        "longdesc": "Count of products purchased by SKU.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "sum",
+        "tags": [
+            "purchase",
+            "product"
+        ]
+    },
+    {
+        "id": "products_categories_purchased",
+        "type": "map[string]intsum",
+        "shortdesc": "Purchased Categories",
+        "longdesc": "Count of purchased categories.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "sum",
+        "tags": [
+            "purchase",
+            "category"
+        ]
+    }
+]

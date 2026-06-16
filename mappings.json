@@ -1,0 +1,77 @@
+[
+    {
+        "field": "basket_product_name",
+        "expr": "set(product_name)",
+        "guard_expr": "eq(trigger, \"item_add\")",
+        "stream": "default"
+    },
+    {
+        "field": "basket_product_sku",
+        "expr": "set(product_sku)",
+        "guard_expr": "eq(trigger, \"item_add\")",
+        "stream": "default"
+    },
+    {
+        "field": "basket_product_category",
+        "expr": "set(categories)",
+        "guard_expr": "eq(trigger, \"item_add\")",
+        "stream": "default"
+    },
+    {
+        "field": "basket_begin_checkout",
+        "expr": "purchase_started",
+        "stream": "default"
+    },
+    {
+        "field": "basket_complete_checkout",
+        "expr": "purchase_completed",
+        "stream": "default"
+    },
+    {
+        "field": "basket_currency",
+        "expr": "currency",
+        "stream": "default"
+    },
+    {
+        "field": "country",
+        "expr": "country",
+        "stream": "default"
+    },
+    {
+        "field": "basket_coupon_code",
+        "expr": "coupon_code",
+        "stream": "default"
+    },
+    {
+        "field": "basket_total",
+        "expr": "cart_total",
+        "stream": "default"
+    },
+    {
+        "field": "products_viewed",
+        "expr": "map(product_viewed, 1)",
+        "stream": "default"
+    },
+    {
+        "field": "products_viewed_categories",
+        "expr": "map(product_viewed_category, 1)",
+        "stream": "default"
+    },
+    {
+        "field": "products_purchased",
+        "expr": "map(products.sku, products.quantity)",
+        "guard_expr": "eq(trigger, \"purchase\")",
+        "stream": "default"
+    },
+    {
+        "field": "products_categories_purchased",
+        "expr": "map(products.categories, 1)",
+        "guard_expr": "eq(trigger, \"purchase\")",
+        "stream": "default"
+    },
+    {
+        "field": "topic_browsed",
+        "expr": "map(topic_browsed, 1)",
+        "stream": "default"
+    }
+]
