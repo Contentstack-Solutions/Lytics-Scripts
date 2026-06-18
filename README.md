@@ -112,8 +112,8 @@ lytics_scripts/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/samarp-jain/Lytics-Script.git
-cd Lytics-Script
+git clone https://github.com/Contentstack-Solutions/Lytics-Scripts.git
+cd Lytics-Scripts
 
 # 2. Run the schema setup script
 node script.js
