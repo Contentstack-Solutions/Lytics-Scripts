@@ -165,8 +165,11 @@ function publishSchema(token, table, accountId) {
 }
 
 function logResult(ok, errorBody) {
-    console.log(ok ? colorize("✓", colors.green) : colorize("✗", colors.red));
-    if (!ok) console.log(`    ${colorize("Error:", colors.red)} ${errorBody?.errors?.[0]?.message || "Unknown error"}`);
+    // console.log("🚀 ~ logResult ~ errorBody:", errorBody)
+    console.log(ok 
+        ? colorize("Done", " ✓ " , colors.green) : 
+        `${colorize("Error:", colors.red)} ${errorBody?.errors?.[0]?.message || "Unknown error"}`
+    );
 }
 
 // ──────────────────────────────────────────────
