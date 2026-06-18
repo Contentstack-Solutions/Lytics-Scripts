@@ -1,0 +1,23 @@
+{
+  "name": "lytics-scripts",
+  "version": "1.0.0",
+  "description": "A collection of Node.js scripts for setting up Lytics schema fields, mappings, and audience segments via the Lytics API.",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Contentstack-Solutions/Lytics-Scripts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Contentstack-Solutions/Lytics-Scripts/issues"
+  },
+  "homepage": "https://github.com/Contentstack-Solutions/Lytics-Scripts#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

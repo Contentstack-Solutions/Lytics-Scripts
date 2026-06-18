@@ -8,6 +8,8 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
+const dotenv = require("dotenv")
+dotenv.config()
 
 const BASE_URL = "https://api.lytics.io/v2/schema";
 
@@ -78,9 +80,21 @@ async function getCredentials() {
     console.log(`\n${colorize("🔧 Lytics Schema Setup", colors.bright)}`);
     console.log(colorize("─".repeat(50), colors.cyan));
 
-    const accountId = await prompt(colorize("  Account ID  : ", colors.cyan));
-    const token = await prompt(colorize("  API Key     : ", colors.cyan), true);
+    // Read credentials from environment (dotenv loads .env.local if present).
+    let accountId = process.env.LYTICS_ACCOUNT_ID 
+    let token = process.env.LYTICS_ACCESS_TOKEN 
     const table = "user";
+
+    if (accountId) console.log(`  ${colorize("Account ID:", colors.cyan)} ${colorize("(loaded)", colors.green)}`);
+    if (token) console.log(`  ${colorize("API Key  :", colors.cyan)} ${colorize("(loaded)", colors.green)}`);
+
+    // Prompt for any missing values
+    if (!accountId) {
+        accountId = await prompt(colorize("  Account ID  : ", colors.cyan));
+    }
+    if (!token) {
+        token = await prompt(colorize("  API Key     : ", colors.cyan), true);
+    }
 
     if (!accountId) {
         console.error(colorize("\n✗ Account ID is required.", colors.red));
