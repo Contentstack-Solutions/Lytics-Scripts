@@ -6,6 +6,8 @@
 
 const https = require("https");
 const readline = require("node:readline");
+const dotenv = require("dotenv")
+dotenv.config()
 
 const BASE_URL = "https://api.lytics.io/api/segment";
 
@@ -258,12 +260,50 @@ function promptHidden(question) {
     });
 }
 
+// export async function getCredentials() {
+//     console.log(`\n${colorize("🔧 Lytics Schema Setup", colors.bright)}`);
+//     console.log(colorize("─".repeat(50), colors.cyan));
+
+//     // Read credentials from environment (dotenv loads .env.local if present).
+//     let accountId = process.env.LYTICS_ACCOUNT_ID 
+//     let token = process.env.LYTICS_ACCESS_TOKEN 
+//     const table = "user";
+
+//     if (accountId) console.log(`  ${colorize("Account ID:", colors.cyan)} ${colorize("(loaded)", colors.green)}`);
+//     if (token) console.log(`  ${colorize("API Key  :", colors.cyan)} ${colorize("(loaded)", colors.green)}`);
+
+//     // Prompt for any missing values
+//     if (!accountId) {
+//         accountId = await promptVisible(colorize("  Account ID  : ", colors.cyan));
+//     }
+//     if (!token) {
+//         token = await promptHidden(colorize("  API Key     : ", colors.cyan), true);
+//     }
+
+//     if (!accountId) {
+//         console.error(colorize("\n✗ Account ID is required.", colors.red));
+//         process.exit(1);
+//     }
+//     if (!token) {
+//         console.error(colorize("\n✗ API Key is required.", colors.red));
+//         process.exit(1);
+//     }
+
+//     return { accountId, token, table };
+// }
+
 async function getCredentials() {
     console.log(`\n${colorize("👥 Lytics Segment Creator", colors.bright)}`);
     console.log(colorize("─".repeat(50), colors.cyan));
+    let accountId = process.env.LYTICS_ACCOUNT_ID 
+    let token = process.env.LYTICS_ACCESS_TOKEN 
 
-    const accountId = await promptVisible(colorize("  Account ID  : ", colors.cyan));
-    const token = await promptHidden(colorize("  API Key     : ", colors.cyan));
+    if (!accountId && !token) {
+        accountId = await promptVisible(colorize("  Account ID  : ", colors.cyan));
+        token = await promptHidden(colorize("  API Key     : ", colors.cyan));
+    }
+
+    
 
     if (!accountId) { console.error(colorize("\n✗ Account ID is required.", colors.red)); process.exit(1); }
     if (!token) { console.error(colorize("\n✗ API Key is required.", colors.red)); process.exit(1); }
