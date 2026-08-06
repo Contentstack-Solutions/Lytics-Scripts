@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "node script.js && node segment.js",
+    "script2": "node new-script.js && node segment-flow.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

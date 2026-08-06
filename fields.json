@@ -14,6 +14,20 @@
         ]
     },
     {
+        "id": "basket_latest_product",
+        "type": "string",
+        "shortdesc": "Latest Item Added to Basket",
+        "longdesc": "The most recent product name added to the basket by the user.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "basket",
+            "ecommerce",
+            "product"
+        ]
+    },
+    {
         "id": "basket_product_sku",
         "type": "[]string",
         "shortdesc": "All SKU's added to basket ",
@@ -190,6 +204,46 @@
         "tags": [
             "purchase",
             "category"
+        ]
+    },
+    {
+        "id": "basket_count",
+        "type": "number",
+        "shortdesc": "Basket Item Count",
+        "longdesc": "Total number of items currently in the user's basket.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "basket",
+            "ecommerce"
+        ]
+    },
+    {
+        "id": "host_url",
+        "type": "string",
+        "shortdesc": "Website Host URL",
+        "longdesc": "The host URL of the website the user is visiting.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "latest",
+        "tags": [
+            "web",
+            "session"
+        ]
+    },
+    {
+        "id": "recently_viewed_products",
+        "type": "map[string]string",
+        "shortdesc": "Recently Viewed Products",
+        "longdesc": "A map of viewed product IDs to the epoch-ms timestamp they were last viewed.",
+        "is_pii": false,
+        "is_identifier": false,
+        "mergeop": "merge",
+        "tags": [
+            "product",
+            "browsing",
+            "engagement"
         ]
     }
 ]

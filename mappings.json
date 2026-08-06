@@ -6,6 +6,12 @@
         "stream": "default"
     },
     {
+        "field": "basket_latest_product",
+        "expr": "product_name",
+        "guard_expr": "eq(trigger, \"item_add\")",
+        "stream": "default"
+    },
+    {
         "field": "basket_product_sku",
         "expr": "set(product_sku)",
         "guard_expr": "eq(trigger, \"item_add\")",
@@ -72,6 +78,21 @@
     {
         "field": "topic_browsed",
         "expr": "map(topic_browsed, 1)",
+        "stream": "default"
+    },
+    {
+        "field": "basket_count",
+        "expr": "item_count",
+        "stream": "default"
+    },
+    {
+        "field": "host_url",
+        "expr": "host(url)",
+        "stream": "default"
+    },
+    {
+        "field": "recently_viewed_products",
+        "expr": "map(product_viewed_id,epochms())",
         "stream": "default"
     }
 ]

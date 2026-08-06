@@ -42,6 +42,21 @@ const DEFAULT_SEGMENTS = [
         tags: ["topic", "cuisine", "browsing"]
     },
     {
+        name: "Swimming Topic Browsers",
+        slug: "swimming_topic_browsers",
+        description: "Users who have browsed the swimming topic",
+        segment_ql: "FILTER AND (topic_browsed.swimming > 1)",
+        ast: {
+            op: ">",
+            args: [
+                { ident: "topic_browsed.swimming" },
+                { val: "2" }
+            ]
+        },
+        fields: ["topic_browsed.swimming"],
+        tags: ["topic", "swimming", "browsing"]
+    },
+    {
         name: "Abandoned Basket",
         slug: "abandoned_basket",
         description: "Visitors who added products to basket but did not complete the purchase",
@@ -295,15 +310,15 @@ function promptHidden(question) {
 async function getCredentials() {
     console.log(`\n${colorize("👥 Lytics Segment Creator", colors.bright)}`);
     console.log(colorize("─".repeat(50), colors.cyan));
-    let accountId = process.env.LYTICS_ACCOUNT_ID 
-    let token = process.env.LYTICS_ACCESS_TOKEN 
+    let accountId = process.env.LYTICS_ACCOUNT_ID
+    let token = process.env.LYTICS_ACCESS_TOKEN
 
     if (!accountId && !token) {
         accountId = await promptVisible(colorize("  Account ID  : ", colors.cyan));
         token = await promptHidden(colorize("  API Key     : ", colors.cyan));
     }
 
-    
+
 
     if (!accountId) { console.error(colorize("\n✗ Account ID is required.", colors.red)); process.exit(1); }
     if (!token) { console.error(colorize("\n✗ API Key is required.", colors.red)); process.exit(1); }
