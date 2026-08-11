@@ -333,36 +333,72 @@ async function createFlow(creds, segmentId, authId) {
                 child_ids: [2],
             },
             {
+                // Checkout Status gate. Users who completed checkout during the
+                // delay are excluded; the Yes branch carries everyone still
+                // holding an abandoned basket on to the email check.
                 sequence_id: 2,
                 type: "conditional_split",
                 child_ids: [3, 4],
             },
             {
+                // Yes — checkout NOT complete, continue to the email check.
                 sequence_id: 3,
+                type: "conditional_split",
+                child_ids: [5, 6],
+            },
+            {
+                // No — excluded, exit.
+                sequence_id: 4,
                 type: "exit",
             },
             {
-                sequence_id: 4,
+                // Yes — has an email address, send.
+                sequence_id: 5,
                 label: "trigger email",
                 slug: "trigger_email",
                 type: "export",
-                child_ids: [5],
+                child_ids: [7],
             },
             {
-                sequence_id: 5,
+                // No — no email address, exit.
+                sequence_id: 6,
+                type: "exit",
+            },
+            {
+                sequence_id: 7,
                 type: "exit",
             },
         ],
         edges: [
             { id: "0-1", source: 0, target: 1, type: "connected" },
             { id: "1-2", source: 1, target: 2, type: "connected" },
+            // NOTE: the API requires the empty/default ("No") branch to be
+            // priority 1 and the branch carrying a definition to be priority 2.
+            // Inverting this fails with "Unable to convert flow json." (HTTP 400).
             {
-                id: "2-3", source: 2, target: 3,
+                // No — completed checkout is excluded, exit.
+                id: "2-4", source: 2, target: 4,
                 condition: { label: "No", definition: "", priority: 1 },
                 type: "connected",
             },
             {
-                id: "2-4", source: 2, target: 4,
+                // Yes — still an abandoned basket, continue. Negated so the
+                // users who DID check out fall through to the exit above.
+                id: "2-3", source: 2, target: 3,
+                condition: {
+                    definition: "FILTER AND(NOT basket_complete_checkout = true) FROM user",
+                    label: "Yes",
+                    priority: 2,
+                },
+                type: "connected",
+            },
+            {
+                id: "3-6", source: 3, target: 6,
+                condition: { label: "No", definition: "", priority: 1 },
+                type: "connected",
+            },
+            {
+                id: "3-5", source: 3, target: 5,
                 condition: {
                     definition: "FILTER AND(EXISTS email) FROM user",
                     label: "Yes",
@@ -370,7 +406,7 @@ async function createFlow(creds, segmentId, authId) {
                 },
                 type: "connected",
             },
-            { id: "4-5", source: 4, target: 5, type: "connected" },
+            { id: "5-7", source: 5, target: 7, type: "connected" },
         ],
     };
 
