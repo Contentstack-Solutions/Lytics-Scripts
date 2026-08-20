@@ -115,8 +115,16 @@ const GATEWAY_URL = "https://lytics-api.contentstack.com/api-gateway";
 // Fields exposed via the public API — whitelisted so they are available in
 // API responses. POST replaces the whole list, so the system fields (_uid,
 // _id) must be included or they'd be dropped.
-const WHITELIST_FIELDS = ["_uid", "_id", "basket_count", "recently_viewed_products"];
-
+const WHITELIST_FIELDS = [
+    "_uid",
+    "_id",
+    "basket_count",
+    "recently_viewed_products",
+    "crm_first_name",
+    "crm_last_name",
+    "crm_loyalty_tier",
+    "topic_browsed",
+];
 // URLs allowed for Orchestrate personalization. POST replaces the whole list.
 // Sourced from the LAUNCH_URL_DOMAIN in .env so it's editable in one place.
 const ORCHESTRATE_URL_WHITELIST = [process.env.LAUNCH_URL_DOMAIN].filter(Boolean);
